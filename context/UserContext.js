@@ -4,7 +4,6 @@ import { createContext, useContext, useState } from "react";
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
-  // Isme hum analyze kiya hua resume text store karenge
   const [sharedResumeText, setSharedResumeText] = useState("");
 
   return (
@@ -14,5 +13,4 @@ export function UserProvider({ children }) {
   );
 }
 
-// Custom hook taaki kisi bhi page par use karna aasaan ho
 export const useUser = () => useContext(UserContext);

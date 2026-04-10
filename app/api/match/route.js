@@ -12,7 +12,6 @@ export async function POST(req) {
       return NextResponse.json({ error: "Resume is required" }, { status: 400 });
     }
 
-    // PDF to text nikalna
     const buffer = Buffer.from(await file.arrayBuffer());
     const resumeText = await extractTextFromPDF(buffer);
 

@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import Preloader from "@/components/Preloader"; // 👈 Naya preloader import kiya
+import Preloader from "@/components/Preloader";
 import { Providers } from "./providers";
 import { ClerkProvider } from "@clerk/nextjs"; 
 
@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
         <body className={`${inter.className} bg-black`}>
           <Providers>
             
-            {/* 🔴 Preloader yahan render hoga 🔴 */}
             <Preloader />
             
             <Navbar />

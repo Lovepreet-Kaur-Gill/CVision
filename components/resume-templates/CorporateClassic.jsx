@@ -5,7 +5,7 @@ const CorporateClassic = ({ data, themeColor = "#000000", fontFamily = "font-ser
   return (
     <div className={`w-full h-full p-12 text-slate-900 bg-white overflow-hidden ${fontFamily}`}>
 
-      {/* ── HEADER ─────────────────────────────────────────────── */}
+      {/* ── HEADER  */}
       <header className="text-center border-b-[2px] pb-5 mb-6" style={{ borderColor: themeColor }}>
         <h1 className="text-3xl font-bold uppercase tracking-widest break-words break-all" style={{ color: themeColor }}>
           {data.personal?.name || "YOUR NAME"}
@@ -18,7 +18,7 @@ const CorporateClassic = ({ data, themeColor = "#000000", fontFamily = "font-ser
           {data.personal?.phone    && <span className="break-all">| {data.personal.phone}</span>}
           {data.personal?.location && <span className="break-all">| {data.personal.location}</span>}
           {data.personal?.linkedin && <span className="break-all">| {data.personal.linkedin}</span>}
-          {/* ✅ GitHub — always visible in header */}
+  
           {data.personal?.github && (
             <span className="flex items-center gap-1 break-all">
               | <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" className="shrink-0">
@@ -38,13 +38,12 @@ const CorporateClassic = ({ data, themeColor = "#000000", fontFamily = "font-ser
         </div>
       </header>
 
-      {/* ── BODY ───────────────────────────────────────────────── */}
+      {/* ── BODY ──── */}
       <div className="space-y-5">
 
-        {/* Profile — never toggled */}
+        {/* Profile  */}
         {data.personal?.summary && (
           <section>
-            {/* ✅ Standardized Header: Consistent 2px border, consistent opacity (4d = ~30%) */}
             <h2 className="text-[13px] font-bold uppercase tracking-widest mb-2 border-b-[2px] pb-1"
               style={{ color: themeColor, borderColor: themeColor + '4d' }}>
               Professional Summary
@@ -55,10 +54,9 @@ const CorporateClassic = ({ data, themeColor = "#000000", fontFamily = "font-ser
           </section>
         )}
 
-        {/* ✅ Experience */}
+        {/*  Experience */}
         {!hiddenSections.experience && data.experience && data.experience.length > 0 && (
           <section>
-            {/* ✅ Standardized Header */}
             <h2 className="text-[13px] font-bold uppercase tracking-widest mb-3 border-b-[2px] pb-1"
               style={{ color: themeColor, borderColor: themeColor + '4d' }}>
               Work Experience
@@ -85,10 +83,9 @@ const CorporateClassic = ({ data, themeColor = "#000000", fontFamily = "font-ser
           </section>
         )}
 
-        {/* ✅ Projects */}
+        {/*  Projects */}
         {!hiddenSections.projects && data.projects && data.projects.length > 0 && (
           <section>
-            {/* ✅ Standardized Header */}
             <h2 className="text-[13px] font-bold uppercase tracking-widest mb-3 border-b-[2px] pb-1"
               style={{ color: themeColor, borderColor: themeColor + '4d' }}>
               Projects
@@ -105,7 +102,6 @@ const CorporateClassic = ({ data, themeColor = "#000000", fontFamily = "font-ser
                       </span>
                     )}
                   </h3>
-                  {/* Date locked right */}
                   {proj.duration && (
                     <span className="text-[11px] font-semibold text-slate-600 whitespace-nowrap shrink-0">
                       {proj.duration}
@@ -120,11 +116,10 @@ const CorporateClassic = ({ data, themeColor = "#000000", fontFamily = "font-ser
           </section>
         )}
 
-        {/* CUSTOM SECTIONS (Corporate Classic Style) */}
+        {/* CUSTOM SECTIONS  */}
         {data.customSections && data.customSections.length > 0 && data.customSections.map(sec => (
           !hiddenSections?.[`custom_${sec.id}`] && (
             <div key={sec.id} className="mb-6 break-inside-avoid">
-              {/* ✅ Standardized Header */}
               <h2 
                 className="text-[13px] font-bold uppercase tracking-widest mb-3 border-b-[2px] pb-1" 
                 style={{ color: themeColor, borderColor: themeColor + '4d' }}
@@ -135,28 +130,23 @@ const CorporateClassic = ({ data, themeColor = "#000000", fontFamily = "font-ser
               <div className="space-y-3">
                 {sec.items.map(item => (
                   <div key={item.id} className="relative">
-                    {/* Flex layout with gap-4 to keep title and date separated cleanly */}
                     <div className="flex justify-between items-baseline gap-4 w-full">
                       <h3 className="font-bold text-[12px] text-slate-900 break-words flex-1 w-full">
                         {item.title}
                       </h3>
-                      
-                      {/* Date locked right */}
+                    
                       {item.date && (
                         <span className="text-[11px] font-semibold text-slate-600 whitespace-nowrap shrink-0">
                           {item.date}
                         </span>
                       )}
                     </div>
-                    
-                    {/* Subtitle with break-words */}
                     {item.subtitle && (
                       <div className="text-[11px] font-semibold italic mt-0.5 break-words" style={{ color: themeColor }}>
                         {item.subtitle}
                       </div>
                     )}
                     
-                    {/* Description with classic line-height and break-words */}
                     {item.desc && (
                       <p className="text-[11px] text-slate-700 mt-1 leading-snug break-words whitespace-pre-wrap">
                         {item.desc}
@@ -169,14 +159,12 @@ const CorporateClassic = ({ data, themeColor = "#000000", fontFamily = "font-ser
           )
         ))}
 
-        {/* ✅ Education + Skills — both individually toggleable */}
         {(!hiddenSections.education || !hiddenSections.skills) && (
           <div className="grid grid-cols-2 gap-8">
 
-            {/* ✅ Education */}
+            {/*Education */}
             {!hiddenSections.education && data.education && data.education.length > 0 && (
               <section>
-                {/* ✅ Standardized Header */}
                 <h2 className="text-[13px] font-bold uppercase tracking-widest mb-3 border-b-[2px] pb-1"
                   style={{ color: themeColor, borderColor: themeColor + '4d' }}>
                   Education
@@ -198,15 +186,13 @@ const CorporateClassic = ({ data, themeColor = "#000000", fontFamily = "font-ser
               </section>
             )}
 
-            {/* ✅ Skills */}
+            {/*  Skills */}
             {!hiddenSections.skills && data.skills && data.skills.length > 0 && (
               <section>
-                {/* ✅ Standardized Header */}
                 <h2 className="text-[13px] font-bold uppercase tracking-widest mb-3 border-b-[2px] pb-1"
                   style={{ color: themeColor, borderColor: themeColor + '4d' }}>
                   Technical Skills
                 </h2>
-                {/* ✅ Skills list matched to the project tech styling (bullet separated) */}
                 <p className="text-[11px] leading-relaxed font-medium text-slate-700 break-words break-all">
                   {data.skills.join(" • ")}
                 </p>

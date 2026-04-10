@@ -1,11 +1,10 @@
 import React from 'react';
 
-// ✅ Added hiddenSections prop — controls which sections render
 const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hiddenSections = {} }) => {
   return (
     <div className={`w-full h-full p-10 text-slate-800 flex flex-col bg-white overflow-hidden ${fontFamily}`}>
 
-      {/* ── HEADER ─────────────────────────────────────────────── */}
+      {/* ── HEADER ───── */}
       <header className="border-b-4 pb-6 mb-6" style={{ borderColor: themeColor }}>
         <h1 className="text-4xl font-black uppercase tracking-tighter text-slate-900 break-words break-all">
           {data.personal?.name || "YOUR NAME"}
@@ -20,7 +19,6 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
           {data.personal?.phone    && <span className="break-all">📞 {data.personal.phone}</span>}
           {data.personal?.linkedin && <span className="break-all">🔗 {data.personal.linkedin}</span>}
 
-          {/* ✅ GitHub — always in header, not toggleable */}
           {data.personal?.github && (
             <span className="flex items-center gap-1 break-all">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="shrink-0">
@@ -40,7 +38,7 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
         </div>
       </header>
 
-      {/* ── BODY ───────────────────────────────────────────────── */}
+      {/* ── BODY ──────── */}
       <div className="grid grid-cols-12 gap-8 flex-1">
 
         {/* LEFT COLUMN */}
@@ -49,7 +47,6 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
           {/* Profile */}
           {data.personal?.summary && (
             <section>
-              {/* ✅ Standardized Header Style */}
               <h2 className="text-sm font-black uppercase tracking-widest mb-3 border-b-2 pb-1" style={{ color: themeColor, borderColor: themeColor }}>
                 Profile
               </h2>
@@ -62,7 +59,6 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
           {/* Experience */}
           {!hiddenSections.experience && data.experience && data.experience.length > 0 && (
             <section>
-              {/* ✅ Standardized Header Style */}
               <h2 className="text-sm font-black uppercase tracking-widest mb-3 border-b-2 pb-1" style={{ color: themeColor, borderColor: themeColor }}>
                 Experience
               </h2>
@@ -70,7 +66,6 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
                 <div key={exp.id} className="mb-4 overflow-hidden">
                   <div className="flex justify-between items-baseline flex-wrap gap-2">
                     <h3 className="font-bold text-base text-slate-800 break-words flex-1">{exp.role}</h3>
-                    {/* ✅ Standardized Date Pill */}
                     {exp.duration && (
                       <span className="text-[10px] font-bold bg-slate-100 text-slate-800 px-2 py-1 rounded whitespace-nowrap shrink-0">
                         {exp.duration}
@@ -91,32 +86,25 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
           {/* Projects */}
           {!hiddenSections.projects && data.projects && data.projects.length > 0 && (
             <section>
-              {/* ✅ Standardized Header Style */}
               <h2 className="text-sm font-black uppercase tracking-widest mb-3 border-b-2 pb-1" style={{ color: themeColor, borderColor: themeColor }}>
                 Projects
               </h2>
               {data.projects.map((proj) => (
                 <div key={proj.id} className="mb-4 overflow-hidden">
                   
-                  {/* Row 1: Title and Date */}
                   <div className="flex justify-between items-baseline flex-wrap gap-2">
                     <h3 className="font-bold text-base text-slate-800 break-words flex-1">{proj.title}</h3>
-                    {/* ✅ Standardized Date Pill */}
                     {proj.duration && (
                       <span className="text-[10px] font-bold bg-slate-100 text-slate-800 px-2 py-1 rounded whitespace-nowrap shrink-0">
                         {proj.duration}
                       </span>
                     )}
                   </div>
-                  
-                  {/* Row 2: Tech Skills */}
-                  {/* Row 2: Tech Skills */}
                   {proj.tech && (
                     <div className="flex flex-wrap gap-1.5 mt-2 mb-2 w-full">
                       {proj.tech.split(',').filter(t => t.trim() !== '').map((tech, i) => (
                         <span
                           key={i}
-                          // ✅ Removed break-all, added whitespace-nowrap
                           className="bg-slate-50 px-2 py-1 rounded text-[10px] font-bold border border-slate-200 whitespace-nowrap inline-block"
                           style={{ color: themeColor }}
                         >
@@ -126,7 +114,6 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
                     </div>
                   )}
 
-                  {/* Row 3: Description */}
                   <p className="text-xs text-slate-600 leading-snug mt-1 break-words whitespace-pre-wrap">
                     {proj.desc}
                   </p>
@@ -140,7 +127,6 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
         <div className="col-span-4 space-y-6 overflow-hidden">
 
           {/* Skills */}
-          {/* Skills */}
           {!hiddenSections.skills && data.skills && data.skills.length > 0 && (
             <section>
               <h2 className="text-xs font-black uppercase tracking-widest text-slate-500 mb-4 border-b pb-1">
@@ -150,7 +136,6 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
                 {data.skills.map((skill, i) => (
                   <span
                     key={i}
-                    // ✅ Removed break-words and break-all, added whitespace-nowrap
                     className="bg-slate-100 px-2 py-1 rounded text-[10px] font-bold border border-slate-200 whitespace-nowrap inline-block"
                     style={{ color: themeColor }}
                   >
@@ -161,11 +146,10 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
             </section>
           )}
 
-          {/* CUSTOM SECTIONS (Modern Tech Style) */}
+          {/* CUSTOM SECTIONS */}
           {data.customSections && data.customSections.length > 0 && data.customSections.map(sec => (
             !hiddenSections?.[`custom_${sec.id}`] && (
               <div key={sec.id} className="mb-6 break-inside-avoid">
-                {/* ✅ Standardized Header Style */}
                 <h2 className="text-sm font-black uppercase tracking-widest mb-3 border-b-2 pb-1" style={{ color: themeColor, borderColor: themeColor }}>
                   {sec.title}
                 </h2>
@@ -173,21 +157,16 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
                 <div className="space-y-4">
                   {sec.items.map(item => (
                     <div key={item.id} className="relative">
-                      {/* Flex layout with gap-4 ensures title and date never overlap */}
                       <div className="flex justify-between items-baseline mb-1 gap-2">
                         <h3 className="font-bold text-base text-slate-800 break-words flex-1">
                           {item.title}
                         </h3>
-                        
-                        {/* ✅ Standardized Date Pill */}
                         {item.date && (
                           <span className="text-[10px] font-bold bg-slate-100 text-slate-800 px-2 py-1 rounded whitespace-nowrap shrink-0">
                             {item.date}
                           </span>
                         )}
                       </div>
-                      
-                      {/* Subtitle & Description with break-words to prevent horizontal overflow */}
                       {item.subtitle && (
                         <div className="text-xs font-bold mb-1 break-words" style={{ color: themeColor }}>
                           {item.subtitle}
@@ -209,7 +188,6 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
           {/* Education */}
           {!hiddenSections.education && data.education && data.education.length > 0 && (
             <section>
-              {/* ✅ Standardized Header Style */}
               <h2 className="text-sm font-black uppercase tracking-widest mb-3 border-b-2 pb-1" style={{ color: themeColor, borderColor: themeColor }}>
                 Education
               </h2>
@@ -217,7 +195,6 @@ const ModernTech = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hi
                 <div key={edu.id} className="mb-4 overflow-hidden">
                   <div className="flex justify-between items-baseline flex-wrap gap-2 mb-1">
                     <h3 className="font-bold text-base text-slate-800 break-words flex-1">{edu.degree}</h3>
-                    {/* ✅ Standardized Date Pill */}
                     {edu.year && (
                       <span className="text-[10px] font-bold bg-slate-100 text-slate-800 px-2 py-1 rounded whitespace-nowrap shrink-0">
                         {edu.year}

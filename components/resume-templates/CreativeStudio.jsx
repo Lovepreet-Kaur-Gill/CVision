@@ -1,6 +1,5 @@
 import React from 'react';
 
-// ✅ hiddenSections prop added — controls which sections render
 const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans", hiddenSections = {} }) => {
   const nameParts = (data.personal?.name || "YOUR NAME").split(" ");
   const firstName = nameParts[0];
@@ -9,7 +8,7 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
   return (
     <div className={`w-full min-h-[297mm] flex font-sans text-slate-800 bg-white overflow-hidden ${fontFamily}`}>
 
-      {/* ── LEFT SIDEBAR ───────────────────────────────────────── */}
+      {/* ── LEFT SIDEBAR ────── */}
       <div className="w-[35%] p-8 text-white flex flex-col shadow-2xl z-10" style={{ backgroundColor: themeColor }}>
 
         {/* Profile photo */}
@@ -27,7 +26,6 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
           )}
         </div>
 
-        {/* Contact — never toggled */}
         <section className="mb-6">
           <h2 className="text-xs font-black uppercase tracking-widest mb-3 border-b border-white/30 pb-1">
             Contact
@@ -37,7 +35,7 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
             {data.personal?.phone    && <p>📞 {data.personal.phone}</p>}
             {data.personal?.location && <p>📍 {data.personal.location}</p>}
             {data.personal?.linkedin && <p>🔗 {data.personal.linkedin}</p>}
-            {/* ✅ GitHub — always visible */}
+  
             {data.personal?.github && (
               <p className="flex items-center gap-1 break-all">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" className="shrink-0">
@@ -57,7 +55,7 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
           </div>
         </section>
 
-        {/* ✅ Skills */}
+        {/* Skills */}
         {!hiddenSections.skills && data.skills && data.skills.length > 0 && (
           <section className="mb-6">
             <h2 className="text-xs font-black uppercase tracking-widest mb-3 border-b border-white/30 pb-1">
@@ -76,7 +74,7 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
           </section>
         )}
 
-        {/* ✅ Education */}
+        {/*  Education */}
         {!hiddenSections.education && data.education && data.education.length > 0 && (
           <section>
             <h2 className="text-xs font-black uppercase tracking-widest mb-3 border-b border-white/30 pb-1">
@@ -98,10 +96,9 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
         )}
       </div>
 
-      {/* ── RIGHT CONTENT ──────────────────────────────────────── */}
+      {/* ── RIGHT CONTENT ─ */}
       <div className="w-[65%] p-10 flex flex-col bg-slate-50">
 
-        {/* Header name — never toggled */}
         <header className="mb-8 border-b-2 border-slate-200 pb-6">
           <h1 className="text-5xl font-black uppercase tracking-tighter leading-none text-slate-900 break-words break-all">
             {firstName} <br />
@@ -114,10 +111,9 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
 
         <div className="space-y-6 flex-1 overflow-hidden">
 
-          {/* Profile summary — never toggled */}
+          {/* Profile */}
           {data.personal?.summary && (
             <section>
-              {/* ✅ Standardized Header Style (Colored text, colored line) */}
               <div className="flex items-center gap-3 mb-4">
                 <h2 className="text-xs font-black uppercase tracking-widest" style={{ color: themeColor }}>
                   Profile
@@ -130,10 +126,9 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
             </section>
           )}
 
-          {/* ✅ Experience */}
+          {/*  Experience */}
           {!hiddenSections.experience && data.experience && data.experience.length > 0 && (
             <section>
-              {/* ✅ Standardized Header Style (Colored text, colored line) */}
               <div className="flex items-center gap-3 mb-4">
                 <h2 className="text-xs font-black uppercase tracking-widest" style={{ color: themeColor }}>
                   Experience
@@ -153,7 +148,6 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
                   />
                   <div className="flex justify-between items-baseline flex-wrap gap-4">
                     <h3 className="font-bold text-[12px] break-words break-all text-slate-900 flex-1">{exp.role}</h3>
-                    {/* ✅ Standardized Date Style (Theme color pill) */}
                     {exp.duration && (
                       <span 
                         className="text-[9px] font-bold px-2 py-0.5 rounded shrink-0 uppercase tracking-wider whitespace-nowrap"
@@ -174,10 +168,9 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
             </section>
           )}
 
-          {/* ✅ Projects */}
+          {/*  Projects */}
           {!hiddenSections.projects && data.projects && data.projects.length > 0 && (
             <section>
-              {/* ✅ Standardized Header Style (Colored text, colored line) */}
               <div className="flex items-center gap-3 mb-4">
                 <h2 className="text-xs font-black uppercase tracking-widest" style={{ color: themeColor }}>
                   Projects
@@ -199,7 +192,6 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
                     <h3 className="font-bold text-[12px] break-words break-all text-slate-900 flex-1">
                       {proj.title}
                     </h3>
-                    {/* ✅ Standardized Date Style (Theme color pill) */}
                     {proj.duration && (
                       <span 
                         className="text-[9px] font-bold px-2 py-0.5 rounded shrink-0 uppercase tracking-wider whitespace-nowrap"
@@ -210,7 +202,6 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
                     )}
                   </div>
                   
-                  {/* ✅ Standardized Tech Pills mapped below the title */}
                   {proj.tech && (
                     <div className="flex flex-wrap gap-1.5 mt-1.5 mb-1.5">
                       {proj.tech.split(',').filter(t => t.trim() !== '').map((tech, i) => (
@@ -233,11 +224,10 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
             </section>
           )}
 
-          {/* CUSTOM SECTIONS (Creative Studio Style) */}
+          {/* CUSTOM SECTIONS*/}
           {data.customSections && data.customSections.length > 0 && data.customSections.map(sec => (
             !hiddenSections?.[`custom_${sec.id}`] && (
               <section key={sec.id} className="mb-6 break-inside-avoid">
-                {/* ✅ Standardized Header Style (Colored text, colored line) */}
                 <div className="flex items-center gap-3 mb-4">
                   <h2 className="text-xs font-black uppercase tracking-widest" style={{ color: themeColor }}>
                     {sec.title}
@@ -248,7 +238,7 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
                 <div className="space-y-4">
                   {sec.items.map(item => (
                     <div key={item.id} className="relative pl-4 border-l-2" style={{ borderColor: themeColor + '40' }}>
-                      {/* ✅ Standardized Accent Dot */}
+                   
                       <div 
                         className="absolute w-2 h-2 rounded-full -left-[5px] top-1.5" 
                         style={{ backgroundColor: themeColor }}
@@ -260,7 +250,6 @@ const CreativeStudio = ({ data, themeColor = "#4f46e5", fontFamily = "font-sans"
                           {item.title}
                         </h3>
                         
-                        {/* ✅ Standardized Date Style (Theme color pill) */}
                         {item.date && (
                           <span 
                             className="text-[9px] font-bold px-2 py-0.5 rounded shrink-0 uppercase tracking-wider whitespace-nowrap"

@@ -18,7 +18,7 @@ import { useUser } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import SoftAurora from "@/components/SoftAurora";
 
-// ─── Constants ────────────────────────────────────────────────────────────────
+// ─── Constants ────
 const SKILL_SUGGESTIONS = [
   "React", "Next.js", "TypeScript", "JavaScript", "Python", "Node.js",
   "Tailwind CSS", "GraphQL", "PostgreSQL", "MongoDB", "Docker", "Kubernetes",
@@ -32,7 +32,6 @@ const PRESET_COLORS = [
   "#10b981", "#f59e0b", "#3b82f6", "#ffffff",
 ];
 
-// ✅ REQ 3: Dummy Data for new users instead of your personal info
 const defaultData = {
   personal: {
     name: "John Doe",
@@ -67,10 +66,10 @@ const defaultData = {
       desc: "Developed a full-stack e-commerce platform with secure payment integration and real-time inventory management.",
     },
   ],
-  customSections: [], // ✅ REQ 4: Added array for custom sections
+  customSections: [], 
 };
 
-// ─── Toast ────────────────────────────────────────────────────────────────────
+// ─── Toast ───────
 function Toast({ message, type, onClose }) {
   useEffect(() => {
     const t = setTimeout(onClose, 3500);
@@ -94,7 +93,7 @@ function Toast({ message, type, onClose }) {
   );
 }
 
-// ─── Share Modal ──────────────────────────────────────────────────────────────
+// ─── Share Modal ─────
 function ShareModal({ resumeId, onClose }) {
   const [copied, setCopied] = useState(false);
   const url = resumeId
@@ -141,7 +140,7 @@ function ShareModal({ resumeId, onClose }) {
   );
 }
 
-// ─── Inline Resume Preview ────────────────────────────────────────────────────
+// ───  Resume Preview ──────
 function ResumePreview({ data, themeColor, fontFamily, hiddenSections }) {
   const p = data.personal;
 
@@ -263,7 +262,6 @@ function ResumePreview({ data, themeColor, fontFamily, hiddenSections }) {
   );
 }
 
-// ─── START REPLACEMENT 1 ──────────────────────────────────────────────────────
 const CUSTOM_SECTION_PRESETS = [
   "Certifications", "Awards", "Publications", "Volunteer Work",
   "Languages", "Hobbies & Interests", "References", "Achievements"
@@ -348,7 +346,7 @@ function ConfirmDeleteModal({ onConfirm, onCancel }) {
 }
 
 
-// ─── Main Component ───────────────────────────────────────────────────────────
+// ─── Main Component ────────
 export default function AdvancedResumeBuilder() {
   const { user, isLoaded, isSignedIn } = useUser();
   const { theme, systemTheme }         = useTheme();
@@ -385,7 +383,6 @@ export default function AdvancedResumeBuilder() {
   const [skillSuggestions, setSkillSuggestions]  = useState([]);
   const [activeSkillInput, setActiveSkillInput]  = useState(null);
 
-  // ── Helpers ───────────────────────────────────────────────────────────────────
   const showToast = (msg, type = "success") => setToast({ msg, type });
 
   const pushHistory = useCallback((newData) => {
@@ -418,7 +415,7 @@ export default function AdvancedResumeBuilder() {
     setResumeData(history[i]);
   };
 
-  // ── Fetch from Database ────────────────────────────────────────────────────────
+  // ── Fetching from Database ───────
   useEffect(() => {
     if (!isLoaded || !isSignedIn) { setIsFetching(false); return; }
     (async () => {
@@ -444,7 +441,7 @@ export default function AdvancedResumeBuilder() {
     })();
   }, [isLoaded, isSignedIn, user]);
 
-  // ── Save to Database ──────────────────────────────────────────────────────────
+  // ── Save to Database ───────
   const saveToCloud = async () => {
     if (!isSignedIn) { showToast("Please sign in to save!", "error"); return; }
     setIsSaving(true);
@@ -478,7 +475,7 @@ export default function AdvancedResumeBuilder() {
     }
   };
 
-  // ── PDF Export ────────────────────────────────────────────────────────────────
+  // ── PDF Export ───────────
   const exportPDF = async () => {
     if (!resumeRef.current) return;
     showToast("Generating Premium PDF…", "info");
@@ -510,7 +507,7 @@ export default function AdvancedResumeBuilder() {
     }
   };
 
-  // ── Form Handlers ────────────────────────────────────────────────────────────────
+  // ── Form Handlers ─────────────────
   const handleImageUpload = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -628,11 +625,9 @@ export default function AdvancedResumeBuilder() {
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap');
         .font-syne { font-family: 'Syne', sans-serif; }
         
-        /* ✅ Fixes the long text overflow going out of the resume paper */
         #resume-paper { word-wrap: break-word; overflow-wrap: break-word; }
         #resume-paper * { word-break: break-word; }
 
-        /* Custom Dark Input Style */
         .glass-input {
           background: rgba(255,255,255,0.03);
           border: 1px solid rgba(255,255,255,0.1);
@@ -647,13 +642,12 @@ export default function AdvancedResumeBuilder() {
         }
         .glass-input::placeholder { color: rgba(255,255,255,0.3); }
 
-        /* Custom Scrollbar for Sidebar */
         .custom-scroll::-webkit-scrollbar { width: 4px; }
         .custom-scroll::-webkit-scrollbar-track { background: transparent; }
         .custom-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
         .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(34,211,238,0.5); }
 
-        /* Neon Export Button */
+        /*  Export Button */
         @keyframes gradientShine {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
@@ -671,28 +665,21 @@ export default function AdvancedResumeBuilder() {
         }
       `}} />
 
-      {/* BACKGROUND AURORA (Behind entire builder) */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
          <SoftAurora speed={0.4} color1="#a855f7" color2="#00f2fe" />
          <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
-      {/* ✅ Modals Mounted Here */}
       {toast          && <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
       {showShare      && <ShareModal resumeId={shareId} onClose={() => setShowShare(false)} />}
       {showAddSection && <AddSectionModal onAdd={addCustomSection} onClose={() => setShowAddSection(false)} />}
       {sectionToDelete && <ConfirmDeleteModal onConfirm={confirmDeleteCustomSection} onCancel={() => setSectionToDelete(null)} />}
 
-      {/* ════════ LEFT SIDEBAR (Glass UI) ════════ */}
+      {/* ════════ LEFT SIDEBAr════════ */}
       <div className="w-full md:w-[420px] h-1/2 md:h-full flex flex-col z-10 shrink-0 bg-[#0a0a0f]/80 backdrop-blur-2xl border-r border-white/10 shadow-[20px_0_50px_rgba(0,0,0,0.5)]">
 
         {/* Header */}
-        {/* <div className="p-4 border-b border-white/10 flex justify-between items-center bg-white/5">
-          <h1 className="text-lg font-syne font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 tracking-tight">CVision Builder</h1> */}
-        {/* Header */}
-        {/* ✅ Reduced padding (p-3 md:p-4) to make the header thinner */}
         <div className="p-3 md:p-4 border-b border-white/10 flex justify-between items-center bg-white/5">
-          {/* ✅ Reduced text size (text-base md:text-lg) */}
           <h1 className="text-base md:text-lg font-syne font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 tracking-tight">CVision Builder</h1>
           <div className="flex items-center gap-2">
             <button onClick={undo} disabled={historyIndex <= 0}
@@ -856,7 +843,6 @@ export default function AdvancedResumeBuilder() {
                 ))}
               </div>
 
-              {/* ✅ REQ 4: Custom Section Tabs & Add Button */}
               {(resumeData.customSections || []).length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-2">
                   {resumeData.customSections.map(sec => (
@@ -998,7 +984,6 @@ export default function AdvancedResumeBuilder() {
                           <Trash2 size={10} />
                         </button>
                         
-                        {/* Autocomplete Dropdown */}
                         {activeSkillInput === i && skillSuggestions.length > 0 && (
                           <div className="absolute z-50 top-full left-0 w-full mt-2 bg-[#0a0a0f] border border-cyan-500/30 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] overflow-hidden">
                             {skillSuggestions.map(s => (
@@ -1041,7 +1026,6 @@ export default function AdvancedResumeBuilder() {
                 </div>
               )}
 
-              {/* ✅ REQ 4: Form for Custom Sections */}
               {(resumeData.customSections || []).map(sec => (
                 activeContentSection === `custom_${sec.id}` && (
                   <div key={sec.id} className="space-y-4 animate-in fade-in">
@@ -1051,7 +1035,7 @@ export default function AdvancedResumeBuilder() {
                       </h3>
                       <div className="flex gap-2">
                         <button onClick={() => addCustomItem(sec.id)} className="p-2 bg-cyan-500/20 text-cyan-400 rounded-lg hover:bg-cyan-500/30 transition-all border border-cyan-500/30"><Plus size={14} /></button>
-                        {/* ✅ Updated to use the new modal function */}
+                   
                         <button onClick={() => requestDeleteCustomSection(sec.id)} className="p-2 bg-red-500/20 text-red-400 rounded-lg hover:bg-red-500/30 transition-all border border-red-500/30"><Trash2 size={14} /></button>
                       </div>
                     </div>
@@ -1065,7 +1049,7 @@ export default function AdvancedResumeBuilder() {
                         <div className="grid grid-cols-2 gap-3">
                           <input value={item.title} onChange={e => updCustomItem(sec.id, item.id, "title", e.target.value)} placeholder="Title / Award Name" className="glass-input p-2.5 rounded-xl text-xs col-span-2" />
                           <input value={item.subtitle} onChange={e => updCustomItem(sec.id, item.id, "subtitle", e.target.value)} placeholder="Subtitle / Issuer" className="glass-input p-2.5 rounded-xl text-xs col-span-2 sm:col-span-1" />
-                          {/* ✅ Restricted Date Field with clear placeholder and max length to prevent UI breaking */}
+                        
                           <input type="text" maxLength={25} value={item.date} onChange={e => updCustomItem(sec.id, item.id, "date", e.target.value)} placeholder="Date (e.g., 2023 - 2024)" className="glass-input p-2.5 rounded-xl text-xs col-span-2 sm:col-span-1" />
                         </div>
                         <textarea value={item.desc} onChange={e => updCustomItem(sec.id, item.id, "desc", e.target.value)} placeholder="Description (Optional)" className="glass-input p-3 rounded-xl text-xs w-full h-16 resize-none custom-scroll" />
@@ -1084,7 +1068,6 @@ export default function AdvancedResumeBuilder() {
       <div className="flex-1 relative flex flex-col overflow-hidden bg-transparent z-10">
 
         {/* Toolbar */}
-        {/* ✅ Reduced padding (py-2 md:py-3) to make the toolbar thinner and align better */}
         <div className="flex items-center justify-between px-4 md:px-6 py-2 md:py-3 bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-white/10 z-20">
           <div className="flex items-center gap-3">
             <span className="text-[10px] font-bold uppercase text-cyan-400 tracking-wider hidden sm:block">View Scale</span>
@@ -1097,7 +1080,6 @@ export default function AdvancedResumeBuilder() {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* ✅ REQ 2: Export PDF Button moved here to replace Live Preview */}
             <button onClick={exportPDF} className="flex items-center gap-2 px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/30 rounded-xl text-xs font-bold text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.2)] transition-all">
               <Download size={14} /> Export PDF
             </button>
@@ -1106,7 +1088,6 @@ export default function AdvancedResumeBuilder() {
 
         {/* Scrollable canvas area */}
         <div className="flex-1 custom-scroll overflow-y-auto flex justify-center p-6 md:p-12 relative">
-          {/* ✅ REQ 1: Applying scale to wrapper so the 'resumeRef' is strictly A4 unscaled during html-to-image capture */}
           <div
             className={`transition-all duration-300 origin-top flex justify-center h-fit`}
             style={{
@@ -1114,7 +1095,6 @@ export default function AdvancedResumeBuilder() {
               marginBottom: zoom < 100 ? `-${(100 - zoom) * 2.97}mm` : "40px",
             }}
           >
-            {/* The actual A4 page */}
             <div
               ref={resumeRef}
               id="resume-paper"

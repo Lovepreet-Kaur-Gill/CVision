@@ -11,10 +11,8 @@ export default function SignUpPage() {
   if (!mounted) return null;
 
   return (
-    // 🔴 FIXED LAYOUT: Using overflow-y-auto and min-h-full to prevent top cutoff 🔴
     <div className="fixed inset-0 z-[99999] bg-[#020308] overflow-y-auto transition-colors duration-300">
       
-      {/* 🔴 GLOBAL CSS OVERRIDES FOR CLERK 🔴 */}
       <style dangerouslySetInnerHTML={{ __html: `
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap');
         .font-syne { font-family: 'Syne', sans-serif; }

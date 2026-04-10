@@ -19,7 +19,6 @@ export async function POST(req) {
     const aiResult = await model.generateContent(aiPrompt);
     const responseText = aiResult.response.text();
     
-    // 🛠️ Robust Parsing: Handle backticks or extra text
     let keywords;
     try {
       const cleanJson = responseText.replace(/```json|```/g, "").trim();

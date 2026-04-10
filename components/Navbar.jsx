@@ -14,29 +14,24 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
 export default function Navbar() {
-  // 1. All hooks must be at the top
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [showMobileNav, setShowMobileNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [mounted, setMounted] = useState(false);
 
-  // 2. Effects
   useEffect(() => setMounted(true), []);
 
-  // Smart Scroll Logic for Mobile Bottom Bar & Desktop Background
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Desktop Nav Background toggle
       setScrolled(currentScrollY > 20);
 
-      // Mobile Bottom Nav Hide/Show Logic
       if (currentScrollY > lastScrollY && currentScrollY > 60) {
-        setShowMobileNav(false); // Hide on scroll down
+        setShowMobileNav(false); 
       } else {
-        setShowMobileNav(true);  // Show on scroll up
+        setShowMobileNav(true); 
       }
       setLastScrollY(currentScrollY);
     };
@@ -45,7 +40,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // 3. Constants
   const navLinks = [
     { name: "Score",      href: "/",         icon: <BarChart3 size={20} strokeWidth={2.5} /> },
     { name: "JD Match",   href: "/optimize", icon: <ScanSearch size={20} strokeWidth={2.5} /> }, 
@@ -61,24 +55,18 @@ export default function Navbar() {
     },
   };
 
-  // 4. Early Returns (MUST be after hooks)
   if (!mounted) return null;
   
-  // ✅ If the URL starts with /r/ (shared resume), hide the navbar entirely!
   if (pathname?.startsWith("/r/")) {
     return null;
   }
 
-  // 5. Final JSX Render
   return (
     <header>
-      {/* =========================================================
-          DESKTOP NAVBAR (Premium Pill with Edge Glow Light)
-          ========================================================= */}
+      {/*    DESKTOP NAVBAR */}
       <nav className={`hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${scrolled ? 'w-[90%] max-w-4xl' : 'w-[95%] max-w-5xl'}`}>
         <div className="w-full h-16 bg-[#05050A]/80 backdrop-blur-2xl border border-white/10 rounded-full px-8 flex items-center justify-between shadow-[0_20px_40px_-10px_rgba(0,0,0,0.8)] relative overflow-hidden">
           
-          {/* 🔴 NEW CV MONOGRAM LOGO 🔴 */}
           <Link href="/" className="flex items-center gap-1.5 z-10 group">
             <div className="relative flex items-center justify-center w-12 h-10 transition-transform duration-300 group-hover:scale-110">
               {/* Subtle Background Glow */}
@@ -124,12 +112,9 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* =========================================================
-          MOBILE TOP BAR
-          ========================================================= */}
+      
       <div className="md:hidden fixed top-0 left-0 w-full px-6 py-4 flex justify-between items-center z-40 bg-gradient-to-b from-black/90 to-transparent pointer-events-none">
         
-        {/* 🔴 MOBILE LOGO 🔴 */}
         <Link href="/" className="flex items-center pointer-events-auto">
           <div className="relative flex items-center justify-center w-10 h-8">
             <div className="relative flex items-center justify-center font-syne font-black text-xl tracking-tighter">
@@ -152,9 +137,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* =========================================================
-          MOBILE BOTTOM BAR (Smart Hide/Show on Scroll)
-          ========================================================= */}
+          {/* MOBILE BOTTOM BAR  */}
       <div 
         className={`md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] h-16 bg-[#0a0a0c]/95 backdrop-blur-2xl border border-white/10 rounded-full flex justify-between items-center px-2 z-50 transition-transform duration-500 ease-in-out shadow-[0_10px_40px_rgba(0,0,0,0.8)] ${
           showMobileNav ? 'translate-y-0' : 'translate-y-[150%]'

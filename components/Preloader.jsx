@@ -7,10 +7,9 @@ export default function Preloader() {
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
-    // 2 seconds ka loading effect, uske baad smooth fade out
     const timer = setTimeout(() => {
-      setFade(true); // Fade out start
-      setTimeout(() => setLoading(false), 800); // DOM se hata do fade hone ke baad
+      setFade(true); 
+      setTimeout(() => setLoading(false), 800); 
     }, 2000);
     
     return () => clearTimeout(timer);
@@ -45,7 +44,6 @@ export default function Preloader() {
         .glow-text { animation: pulse-glow 2s ease-in-out infinite; }
       `}} />
       
-      {/* 🔴 Glowing Logo 🔴 */}
       <div className="flex items-center mb-6">
         <span className="font-syne font-extrabold text-5xl text-white tracking-tight flex items-center">
           <span>C</span>
@@ -57,7 +55,6 @@ export default function Preloader() {
         </span>
       </div>
 
-      {/* 🔴 Minimal Loading Bar 🔴 */}
       <div className="w-48 h-[2px] bg-white/10 rounded-full overflow-hidden">
         <div className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-full animate-load-bar shadow-[0_0_10px_rgba(34,211,238,0.8)]"></div>
       </div>

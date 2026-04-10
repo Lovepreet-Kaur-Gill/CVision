@@ -7,7 +7,6 @@ import {
 } from "lucide-react";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
-// Ensure SoftAurora is at this correct path
 import SoftAurora from "@/components/SoftAurora"; 
 
 export default function Home() {
@@ -52,16 +51,13 @@ export default function Home() {
   };
 
   const getScoreColor = (score) => {
-    if (score >= 80) return "#A78BFA"; // Lavender
-    if (score >= 60) return "#f59e0b"; // Amber
+    if (score >= 80) return "#A78BFA"; 
+    if (score >= 60) return "#f59e0b";
     return "#ef4444"; // Red
   };
 
   return (
     <div className="w-full text-slate-100 font-inter pb-10 relative overflow-hidden bg-black">
-      {/* 🔴 Navy Blue se Pure Black (bg-black) kar diya 🔴 */}
-      
-      {/* 🔴 CREATIVE CSS: Fonts, Animations & Button Classes 🔴 */}
       <style dangerouslySetInnerHTML={{__html: `
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap');
         
@@ -82,7 +78,6 @@ export default function Home() {
         .delay-400 { animation-delay: 0.4s; }
         .delay-500 { animation-delay: 0.5s; }
 
-        /* 🔥 NEW: Continuous Float & Tilt Animation for CVision 🔥 */
         @keyframes float-tilt {
           0%, 100% { transform: translateY(0px) rotate(-3deg); filter: hue-rotate(0deg); }
           50% { transform: translateY(-12px) rotate(3deg); filter: hue-rotate(30deg); }
@@ -93,7 +88,6 @@ export default function Home() {
           transform-origin: center center;
         }
 
-        /* Sexy Neon Gradient for CVision */
         @keyframes gradientShine {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
@@ -109,7 +103,6 @@ export default function Home() {
           animation: gradientShine 4s linear infinite;
         }
 
-        /* 🔥 PREMIUM DARK MESH GRADIENT BUTTONS 🔥 */
         .btn-mesh-action {
           background: linear-gradient(110deg, #32402e 0%, #5c3038 50%, #302645 100%);
           border: 1px solid rgba(255, 255, 255, 0.15);
@@ -133,7 +126,6 @@ export default function Home() {
           transform: translateY(-1px);
         }
 
-        /* Glass Card Utility */
         .glass-card {
           background: rgba(15, 15, 20, 0.5);
           backdrop-filter: blur(24px);
@@ -142,32 +134,28 @@ export default function Home() {
         }
       `}} />
 
-      {/* FIXED AURORA BACKGROUND */}
       <div className="fixed inset-0 w-full h-full z-0 opacity-50">
         <SoftAurora
           speed={0.6}
           scale={1.5}
           brightness={1.0}
-          color1="#e100ff" // Magenta/Purple
-          color2="#00f2fe" // Bright Cyan to match CVision
+          color1="#e100ff" 
+          color2="#00f2fe" 
           noiseFrequency={2.5}
           bandSpread={1.3}
           enableMouseInteraction={true}
           mouseInfluence={0.2}
         />
-        {/* Deep black fade at bottom to blend with content */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black pointer-events-none"></div>
       </div>
 
       <main className="max-w-7xl mx-auto px-6 py-12 md:py-20 relative z-10 space-y-24 md:space-y-32">
         
-        {/* PREMIUM HERO SECTION */}
         <section className="text-center pt-10 flex flex-col items-center">
           <div className="animate-reveal inline-flex bg-white/5 border border-white/10 text-cyan-300 px-5 py-2 rounded-full text-xs font-semibold mb-8 backdrop-blur-md tracking-wider uppercase">
             Your Premium Career Sync Catalyst
           </div>
           
-          {/* 🔴 CVision Name with Sexy Tilt & Gradient 🔴 */}
           <h1 className="animate-reveal delay-100 font-syne text-6xl md:text-8xl lg:text-[8.5rem] font-black tracking-[-0.04em] leading-[1.1] flex flex-col items-center">
             <span className="text-white text-4xl md:text-6xl mb-2 drop-shadow-lg">Build the Future with</span>
             <span className="animate-tilt text-gradient-cvision drop-shadow-[0_0_30px_rgba(79,172,254,0.4)] px-4">
@@ -196,7 +184,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ATS ANALYZER - SLICK DROPZONE */}
+        {/* ATS ANALYZER  */}
         <section id="analyzer" className="animate-reveal delay-400 max-w-2xl mx-auto glass-card p-10 md:p-12 rounded-[2.5rem]">
           <div className="text-center space-y-3 mb-12">
             <h2 className="font-syne text-4xl md:text-5xl font-bold tracking-[-0.03em] text-white">
@@ -207,7 +195,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Interactive Upload Zone */}
+          {/*  Upload Zone */}
           <div className={`mt-8 p-3 rounded-2xl border ${file ? 'border-cyan-500/40 bg-cyan-950/20' : 'border-slate-800 bg-white/5'} transition-all`}>
             <div className={`border-2 border-dashed ${file ? 'border-cyan-500/60 bg-cyan-950/20' : 'border-slate-700 hover:border-cyan-500/50'} rounded-xl p-10 flex flex-col items-center justify-center transition-all cursor-pointer`}>
               {file ? (

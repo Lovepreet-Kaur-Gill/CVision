@@ -1,7 +1,17 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-// Humne saare strict guards hata diye hain taaki loop break ho jaye.
-export default clerkMiddleware();
+const isProtectedRoute = createRouteMatcher([
+  '/',              // Home 
+  '/optimize(.*)',  // JD Match page
+  '/jobs(.*)',      // Find Jobs page
+  '/templates(.*)'  // Templates page
+]);
+
+export default clerkMiddleware((auth, req) => {
+  if (isProtectedRoute(req)) {
+    auth().protect();
+  }
+});
 
 export const config = {
   matcher: [

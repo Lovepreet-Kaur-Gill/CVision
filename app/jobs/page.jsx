@@ -20,15 +20,13 @@ export default function JobBoard() {
   const [jobs, setJobs] = useState([]);
   const [uploading, setUploading] = useState(false);
 
-  // ✅ 1. Auto-Fetch Optimization
+  //Auto-Fetch 
   useEffect(() => {
-  // 🛑 Sirf tabhi fetch karo jab sharedResumeText ho AUR jobs empty hon
   if (sharedResumeText && jobs.length === 0 && !loading) {
     fetchJobs(sharedResumeText);
   }
 }, [sharedResumeText, jobs.length]);
 
-  // ✅ 2. Handle PDF Upload
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -39,7 +37,6 @@ export default function JobBoard() {
     formData.append("jobDescription", "General Software Engineering Role"); 
 
     try {
-      // Note: Make sure /api/match handles FormData properly
       const res = await fetch("/api/match", { method: "POST", body: formData });
       const data = await res.json();
       
@@ -57,7 +54,7 @@ export default function JobBoard() {
     }
   };
 
-  // ✅ 3. Fetch Jobs Logic (CRITICAL FIX: Added Headers)
+  // Fetch Jobs Logic
   const fetchJobs = async (text) => {
     if (!text) return;
     setLoading(true);
@@ -65,7 +62,7 @@ export default function JobBoard() {
       const res = await fetch("/api/jobs", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", // 👈 This fixes the 500 error!
+          "Content-Type": "application/json", 
         },
         body: JSON.stringify({ resumeText: text }),
       });
@@ -84,7 +81,6 @@ export default function JobBoard() {
     }
   };
 
-  // ✅ 4. Reset Logic
   const handleReset = () => {
       setSharedResumeText("");
       setJobs([]);

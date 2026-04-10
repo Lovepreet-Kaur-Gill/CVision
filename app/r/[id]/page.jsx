@@ -29,7 +29,6 @@ export default function SharedResumeViewer() {
         if (error || !data) {
           setError(true);
         } else {
-          // Reconstruct the data object for the template
           setResumeData({
             personal: data.personal_info || {},
             experience: data.experience || [],
@@ -77,7 +76,6 @@ export default function SharedResumeViewer() {
   return (
     <div className="min-h-screen w-full bg-black py-10 px-4 md:py-20 flex justify-center overflow-y-auto custom-scroll relative">
       
-      {/* Background Styling */}
       <style dangerouslySetInnerHTML={{__html: `
         .custom-scroll::-webkit-scrollbar { width: 6px; }
         .custom-scroll::-webkit-scrollbar-track { background: transparent; }
@@ -89,12 +87,9 @@ export default function SharedResumeViewer() {
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
-      {/* Shared Resume Canvas */}
       <div className="z-10 relative flex flex-col items-center">
         
-        {/* Paper Container (Removed the floating badge, added mb-10 for padding) */}
         <div className="w-[210mm] min-h-[297mm] mb-10 bg-white shadow-[0_0_80px_rgba(0,0,0,0.8)] overflow-hidden scale-[0.6] sm:scale-75 md:scale-100 origin-top">
-          {/* Defaulting to ModernTech for the shared view, with a sleek Cyan accent */}
           <ModernTech 
             data={resumeData} 
             themeColor="#00f2fe" 

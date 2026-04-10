@@ -16,7 +16,6 @@ import {
   Sparkles,
   Target
 } from "lucide-react";
-// Ensure SoftAurora is at this correct path
 import SoftAurora from "@/components/SoftAurora";
 
 export default function JdMatcher() {
@@ -26,7 +25,6 @@ export default function JdMatcher() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
 
-  // Error Auto-hide Logic
   useEffect(() => {
     if (error) {
       const timer = setTimeout(() => setError(""), 4000);
@@ -61,8 +59,8 @@ export default function JdMatcher() {
   };
 
   const getScoreColor = (score) => {
-    if (score >= 80) return "#00f2fe"; // Neon Cyan for High Match
-    if (score >= 60) return "#a855f7"; // Neon Purple for Medium
+    if (score >= 80) return "#00f2fe"; 
+    if (score >= 60) return "#a855f7"; 
     return "#ef4444"; // Red for Low
   };
 
@@ -75,7 +73,6 @@ export default function JdMatcher() {
   return (
     <div className="min-h-screen w-full text-slate-100 font-inter pb-10 relative overflow-hidden bg-black">
       
-      {/* 🔴 CREATIVE CSS: Fonts, Animations & Button Classes 🔴 */}
       <style dangerouslySetInnerHTML={{__html: `
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap');
         
@@ -125,7 +122,6 @@ export default function JdMatcher() {
         textarea::-webkit-scrollbar-thumb:hover { background: rgba(34,211,238,0.5); }
       `}} />
 
-      {/* FIXED AURORA BACKGROUND */}
       <div className="fixed inset-0 w-full h-full z-0 opacity-40 pointer-events-none">
         <SoftAurora
           speed={0.5}
@@ -200,7 +196,7 @@ export default function JdMatcher() {
           </div>
         </div>
 
-        {/* 🔴 NEW: Action Button with Neon Gradient 🔴 */}
+        {/*  Action Button  */}
         <div className="animate-reveal delay-400 flex flex-col items-center gap-4 mt-8">
           <button
             onClick={handleMatch}
@@ -221,11 +217,10 @@ export default function JdMatcher() {
           )}
         </div>
 
-        {/* ✅ RESULTS OR PLACEHOLDER */}
+        {/*  RESULTS */}
         {result ? (
           <div className="animate-in fade-in slide-in-from-bottom-8 duration-700 space-y-12 mt-12">
             
-            {/* Top Row: Score & Analysis */}
             <div className="grid md:grid-cols-3 gap-8">
               
               {/* Score Card */}
@@ -303,7 +298,6 @@ export default function JdMatcher() {
             </div>
           </div>
         ) : (
-          /* ✨ THE PLACEHOLDER */
           <div className="flex flex-col items-center justify-center py-24 glass-card rounded-[3rem] animate-pulse mx-auto max-w-4xl border-dashed border-white/20 mt-12">
             <div className="p-6 bg-cyan-950/40 rounded-full mb-6 border border-cyan-500/20 shadow-[0_0_30px_rgba(34,211,238,0.15)]">
               <Sparkles size={48} className="text-cyan-400" />
