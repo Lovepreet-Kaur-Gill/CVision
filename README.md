@@ -22,17 +22,17 @@ CVision is a high-performance, full-stack resume builder and career optimization
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="screenshots/home.png" width="45%"/>
-  <img src="screenshots/resume-builder.png" width="45%"/>
+  <img src="public/screenshots/home.png" width="45%"/>
+  <img src="public/screenshots/resume-builder.png" width="45%"/>
 </p>
 
 <p align="center">
-  <img src="screenshots/jd-matcher.png" width="45%"/>
-  <img src="screenshots/job-finder.png" width="45%"/>
+  <img src="public/screenshots/jd-matcher.png" width="45%"/>
+  <img src="public/screenshots/job-finder.png" width="45%"/>
 </p>
 
 <p align="center">
-  <img src="screenshots/mobile-view.png" width="30%"/>
+  <img src="public/screenshots/mobile-view.png" width="30%"/>
 </p>
 
 ---
