@@ -37,7 +37,7 @@ export default function SignUpPage() {
         /* DEEP CLERK CSS OVERRIDES FOR GLASS EFFECT - HIGH BLUR 40px */
         .cl-card {
           background: rgba(8, 8, 12, 0.6) !important;
-          backdrop-filter: blur(40px) !important;      /* 🔴 HIGH BLURNESS AS REQUESTED 🔴 */
+          backdrop-filter: blur(40px) !important;     
           border: 1px solid rgba(255, 255, 255, 0.08) !important;
           box-shadow: 0 0 60px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(255, 255, 255, 0.01) !important;
           border-radius: 1.75rem !important;
@@ -97,7 +97,6 @@ export default function SignUpPage() {
         {/* ── Branding ── */}
         <div className="mb-10 flex flex-col items-center text-center">
           
-          {/* 🔴 OVERLAPPING CV MONOGRAM LOGO 🔴 */}
           <div className="relative flex items-center justify-center w-24 h-24 mb-6 group cursor-default">
             <div className="absolute inset-0 bg-cyan-500/20 blur-[30px] rounded-full group-hover:bg-cyan-500/40 transition-all duration-700"></div>
             <div className="relative z-10 flex items-center justify-center w-full h-full text-white font-syne font-black text-6xl tracking-tighter">

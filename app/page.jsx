@@ -221,7 +221,7 @@ export default function Home() {
             </SignedIn>
             <SignedOut>
               <Link href="/sign-in?redirect_url=/" className={`w-full block py-4 rounded-full text-center font-semibold text-lg text-white transition-all ${ !file ? "bg-white/5 border border-white/10 pointer-events-none text-slate-500" : "btn-mesh-action hover:scale-[1.01] animate-pulse" }`}>
-                {!file ? "Upload PDF First" : "Sign in to Scan Resume 🚀"}
+                {!file ? "Upload PDF First" : "Sign in to Scan Resume !"}
               </Link>
             </SignedOut>
           </div>
